@@ -4,9 +4,9 @@ This was one of a series of projects I completed after finishing my first year o
 ###
 <details><summary>How to Use</summary>
 <p>
+Enter your desired runtime in the main.py file
 
 #### Command
-Enter your desired runtime in the main.py file
 
 ```
 python main.py 

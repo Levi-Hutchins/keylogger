@@ -6,6 +6,7 @@ This was one of a series of projects I completed after finishing my first year o
 <p>
 
 #### Command
+Enter your desired runtime in the main.py file
 
 ```
 python main.py 

